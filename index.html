@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Управление согласием на cookie — darneo.cookie</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+<style>
+    body { margin: 0; }
+    .fancybox-container { z-index: 9999999999; }
+
+    .dc-presentation {
+        color-scheme: light;
+        --dc-ink: #202b30;
+        --dc-muted: #53666d;
+        --dc-accent: #206c7d;
+        --dc-accent-dark: #164e5b;
+        --dc-line: #dce5e7;
+        --dc-paper: #ffffff;
+        --dc-stage: #f0f4f4;
+        --dc-tint: #eaf3f3;
+    }
+
+    .dc-presentation, .dc-presentation * { box-sizing: border-box; }
+    .dc-presentation ::selection { background: #c8e6e8; color: #173c44; }
+    .dc-presentation a { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+    .dc-presentation a:focus-visible { outline: 3px solid var(--dc-accent); outline-offset: 6px; border-radius: 8px; }
+    .dc-presentation img { display: block; max-width: 100%; height: auto; }
+    .dc-presentation h1, .dc-presentation h2, .dc-presentation h3,
+    .dc-presentation p, .dc-presentation figure, .dc-presentation dl, .dc-presentation dd { margin: 0; }
+    .dc-presentation h1, .dc-presentation h2, .dc-presentation h3 { color: inherit; text-transform: none; }
+
+    .dc-presentation {
+        max-width: 1120px;
+        margin: 32px auto;
+        padding: 0 56px;
+        background: var(--dc-paper);
+        color: var(--dc-ink);
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 16px;
+        line-height: 1.65;
+        overflow-wrap: break-word;
+    }
+    .dc-hero__intro { display: grid; grid-template-columns: .95fr 1.05fr; gap: 48px; align-items: center; }
+    .dc-hero h1 { max-width: 19ch; font-size: 50px; line-height: 1.08; font-weight: 700; letter-spacing: -.03em; text-wrap: balance; }
+    .dc-hero__copy { font-size: 18px; }
+    .dc-note { margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--dc-line); color: var(--dc-muted); font-size: 14px; }
+    .dc-legal .dc-proof__intro { margin-bottom: 0; }
+    @media (min-width: 641px) {
+        .dc-legal .dc-proof__intro { grid-template-columns: 1.05fr .95fr; }
+        .dc-legal h2 { grid-area: 1 / 2; }
+        .dc-legal .dc-copy { grid-area: 1 / 1; }
+    }
+    .dc-preferences { display: grid; grid-template-columns: 1.08fr 1fr; align-items: center; gap: 48px; }
+    .dc-preferences h2 { margin-bottom: 10px; }
+    .dc-preferences__description { max-width: 43ch; margin-top: 20px; padding-bottom: 15px; color: var(--dc-muted); }
+    .dc-preferences__note { max-width: 43ch; margin-top: 18px; padding-top: 15px; border-top: 1px solid var(--dc-line); color: var(--dc-muted); font-size: 14px; }
+    .dc-preferences__visual { min-width: 0; }
+    .dc-preferences__stage { padding: 28px; border-radius: 20px; background: var(--dc-tint); }
+    .dc-preferences__stage img { width: 100%; border-radius: 8px; box-shadow: 0 12px 32px rgba(24, 62, 70, .12); }
+
+    .dc-proof { padding: 52px 0; border-top: 1px solid var(--dc-line); }
+    .dc-presentation > .dc-proof:first-of-type { border-top: 0; }
+    .dc-proof__intro { display: grid; grid-template-columns: .95fr 1.05fr; gap: 48px; align-items: start; margin-bottom: 28px; }
+    .dc-proof h2 { font-size: clamp(27px, 3.1vw, 36px); line-height: 1.16; font-weight: 700; letter-spacing: -.025em; text-wrap: balance; }
+    .dc-copy { max-width: 62ch; color: var(--dc-muted); }
+    .dc-copy p + p { margin-top: 12px; }
+    .dc-copy strong { color: var(--dc-ink); font-weight: 600; }
+    .dc-proof__stage { padding: 16px; border-radius: 16px; background: var(--dc-stage); }
+    .dc-presentation .dc-screenshot { display: block; border-radius: 7px; text-decoration: none; }
+    .dc-screenshot img { width: 100%; border-radius: 7px; }
+    .dc-screenshot:hover img { filter: brightness(.985); }
+
+    .dc-palette { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; margin-top: 22px; }
+    .dc-palette__colors { display: grid; grid-template-columns: repeat(7, 18px); gap: 6px; }
+    .dc-palette__colors i { display: block; width: 18px; height: 18px; border: 1px solid rgba(0, 0, 0, .08); border-radius: 50%; }
+    .dc-palette__text { max-width: 30ch; font-size: 16px; line-height: 1.5; color: var(--dc-accent); font-weight: 600; }
+
+    .dc-script-band { display: grid; grid-template-columns: .88fr 1.12fr; gap: 48px; align-items: start; margin-bottom: 24px; }
+    .dc-split { display: grid; grid-template-columns: 1.15fr 1fr; gap: 44px; align-items: center; }
+    .dc-split__copy { min-width: 0; }
+    .dc-split__copy h2 { margin-bottom: 20px; }
+    .dc-split__copy p + p { margin-top: 14px; }
+    .dc-reopen-stage { padding: 12px; border-radius: 16px; background: var(--dc-stage); }
+
+    .dc-log-viewport { aspect-ratio: 2.2; overflow: hidden; border-radius: 7px; }
+    .dc-log-viewport img { width: 100%; max-width: none; }
+
+    @media (max-width: 900px) {
+        .dc-presentation { margin: 16px auto; padding: 0 32px; }
+        .dc-hero__intro { gap: 28px; }
+        .dc-preferences { gap: 28px; }
+        .dc-preferences__stage { padding: 18px; }
+        .dc-proof__intro, .dc-script-band { gap: 28px; }
+        .dc-split { gap: 28px; }
+    }
+
+    @media (max-width: 640px) {
+        .dc-presentation { margin: 0; padding: 0 22px; }
+        .dc-hero__intro { grid-template-columns: 1fr; gap: 22px; }
+        .dc-hero__copy { font-size: 17px; }
+        .dc-preferences { grid-template-columns: 1fr; gap: 26px; }
+        .dc-preferences__description { margin-top: 16px; }
+        .dc-preferences__note { margin-top: 16px; }
+        .dc-preferences__visual { max-width: 420px; width: 100%; margin: 0 auto; }
+        .dc-preferences__stage { padding: 20px; border-radius: 16px; }
+        .dc-proof { padding: 34px 0; }
+        .dc-proof__intro, .dc-script-band, .dc-split { grid-template-columns: 1fr; gap: 18px; }
+        .dc-proof__intro, .dc-script-band { margin-bottom: 22px; }
+        .dc-proof h2 { font-size: 29px; }
+        .dc-proof__stage { margin: 0 -8px; padding: 8px; border-radius: 12px; }
+        .dc-split__copy { grid-row: 1; }
+        .dc-split__copy h2 { margin-bottom: 16px; }
+        .dc-reopen-stage { margin: 0 -8px; padding: 8px; border-radius: 12px; }
+        .dc-log-viewport { aspect-ratio: 1.65; }
+    }
+
+    @media print {
+        .dc-presentation { max-width: none; margin: 0; padding: 0; }
+        .dc-proof { break-inside: avoid; }
+        .dc-log-viewport { aspect-ratio: auto; overflow: visible; }
+        .dc-preferences__stage img { box-shadow: none; }
+    }
+</style>
+</head>
+<body>
+<article class="dc-presentation" aria-labelledby="dc-title">
+    <section class="dc-proof dc-hero" aria-labelledby="dc-title">
+        <div class="dc-hero__intro">
+            <h1 id="dc-title">Управляйте согласием на cookie с&nbsp;учётом требований 152-ФЗ</h1>
+            <div class="dc-copy dc-hero__copy">
+                <p><strong>Модуль помогает соблюдать требования 152-ФЗ при получении согласия на обработку персональных данных.</strong> Посетитель принимает все категории cookie, отклоняет необязательные или выбирает нужные.</p>
+                <p>Модуль запускает добавленные вами скрипты только для разрешённых посетителем категорий и&nbsp;автоматически сохраняет согласия и&nbsp;отказы в&nbsp;журнале.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="dc-proof dc-legal" aria-labelledby="dc-legal-title">
+        <div class="dc-proof__intro">
+            <h2 id="dc-legal-title">Почему важно дождаться согласия</h2>
+            <div class="dc-copy">
+                <p><strong>Если скрипт собирает персональные данные до получения необходимого согласия посетителя, это нарушение 152-ФЗ.</strong> Отображение уведомления само по себе не останавливает такую обработку.</p>
+                <p>Если сервис обрабатывает персональные данные на основании согласия, получите согласие до начала сбора. Основания обработки перечислены в&nbsp;<a href="https://www.consultant.ru/document/cons_doc_LAW_61801/315f051396c88f1e4f827ba3f2ae313d999a1873/" target="_blank" rel="noopener">ст.&nbsp;6 Федерального закона №&nbsp;152-ФЗ «О&nbsp;персональных данных»</a>.</p>
+                <p>Согласие должно быть информированным и&nbsp;однозначным, его можно отозвать. Подтвердить получение согласия или наличие другого основания обработки обязан оператор&nbsp;— <a href="https://www.consultant.ru/document/cons_doc_LAW_61801/6c94959bc017ac80140621762d2ac59f6006b08c/" target="_blank" rel="noopener">ч.&nbsp;1–3 ст.&nbsp;9 152-ФЗ</a>.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="dc-proof" aria-labelledby="dc-scripts-title">
+        <div class="dc-script-band">
+            <h2 id="dc-scripts-title">Управляйте запуском аналитики и&nbsp;рекламы</h2>
+            <div class="dc-copy">
+                <p><strong>Модуль запускает скрипты из&nbsp;своих файлов только после согласия на их категории.</strong> При следующих посещениях он учитывает сохранённый выбор.</p>
+                <p class="dc-note">Добавьте код сервисов в&nbsp;файлы категорий на вкладке «Скрипты». Если код уже есть в&nbsp;шаблоне сайта, после переноса удалите его из&nbsp;шаблона, чтобы сервис не запускался до согласия посетителя. У&nbsp;каждого сайта свой набор файлов.</p>
+            </div>
+        </div>
+        <figure>
+            <div class="dc-proof__stage">
+                <a class="dc-screenshot" data-fancybox href="image/demo/scripts.png" target="_blank" rel="noopener" aria-label="Открыть скриншот скриптов по категориям в&nbsp;полном размере">
+                    <img src="image/demo/scripts.png" alt="Файлы для аналитики, маркетинга и&nbsp;дополнительных сервисов; вкладки сайтов demo.example." width="2160" height="728" fetchpriority="high" decoding="async">
+                </a>
+            </div>
+        </figure>
+    </section>
+
+    <section class="dc-proof dc-preferences" aria-labelledby="dc-preferences-title">
+        <div>
+            <h2 id="dc-preferences-title">Дайте посетителю понятный выбор</h2>
+            <p class="dc-preferences__description">В&nbsp;уведомлении есть кнопки «Принять все», «Отклонить» и&nbsp;«Настроить». Посетитель может разрешить все категории, отказаться от&nbsp;необязательных cookie или выбрать нужные категории и&nbsp;сохранить настройки.</p>
+            <p class="dc-preferences__note">Посетитель отдельно выбирает категории «Аналитика», «Маркетинг» и&nbsp;«Дополнительные». По умолчанию необязательные категории не выбраны. Категорию «Необходимые» отключить нельзя.</p>
+        </div>
+        <figure class="dc-preferences__visual">
+            <div class="dc-preferences__stage">
+                <a class="dc-screenshot" data-fancybox href="image/demo/settings.jpg" target="_blank" rel="noopener" aria-label="Открыть окно выбора категорий cookie в&nbsp;полном размере">
+                    <img src="image/demo/settings.jpg" alt="Настройки cookie: категории, переключатели и&nbsp;кнопки сохранения выбора." width="631" height="614" loading="lazy" decoding="async">
+                </a>
+            </div>
+        </figure>
+    </section>
+
+    <section class="dc-proof" aria-labelledby="dc-appearance-title">
+        <div class="dc-proof__intro">
+            <div>
+                <h2 id="dc-appearance-title">Оформите уведомление под ваш сайт</h2>
+                <div class="dc-palette">
+                    <span class="dc-palette__text">35 готовых цветовых схем + возможность задать свои цвета</span>
+                    <span class="dc-palette__colors" role="img" aria-label="Акцентные цвета первых семи из&nbsp;35 готовых цветовых схем модуля">
+                            <i style="background-color:#206c7d" title="По умолчанию&nbsp;— #206c7d"></i>
+                            <i style="background-color:#28734f" title="Изумруд&nbsp;— #28734f"></i>
+                            <i style="background-color:#625d54" title="Камень&nbsp;— #625d54"></i>
+                            <i style="background-color:#74644e" title="Песок&nbsp;— #74644e"></i>
+                            <i style="background-color:#53695c" title="Шалфей&nbsp;— #53695c"></i>
+                            <i style="background-color:#245da8" title="Океан&nbsp;— #245da8"></i>
+                            <i style="background-color:#7051a3" title="Лаванда&nbsp;— #7051a3"></i>
+                        </span>
+                </div>
+            </div>
+            <div class="dc-copy">
+                <p><strong>Выберите готовую цветовую схему или задайте свои цвета.</strong> Настройте положение и&nbsp;размеры окна, оформите кнопки и&nbsp;добавьте изображение.</p>
+                <p>Измените заголовки, текст уведомления, подписи кнопок, описания категорий и&nbsp;ссылку на политику. Предпросмотр покажет результат до сохранения настроек.</p>
+            </div>
+        </div>
+        <figure>
+            <div class="dc-proof__stage">
+                <a class="dc-screenshot" data-fancybox href="image/demo/appearance-v2.png" target="_blank" rel="noopener" aria-label="Открыть скриншот настроек оформления в&nbsp;полном размере">
+                    <img src="image/demo/appearance-v2.png" alt="Настройки цветов и&nbsp;предпросмотр уведомления на сайте demo.exempal." width="1573" height="1000" loading="lazy" decoding="async">
+                </a>
+            </div>
+            <figcaption class="dc-note">На скриншоте показан пример оформления. Текст уведомления и&nbsp;подписи кнопок владелец сайта задаёт под свои сервисы и&nbsp;условия обработки данных.</figcaption>
+        </figure>
+    </section>
+
+    <section class="dc-proof dc-split" aria-labelledby="dc-reopen-title">
+        <figure>
+            <div class="dc-reopen-stage">
+                <a class="dc-screenshot" data-fancybox href="image/demo/reopen.png" target="_blank" rel="noopener" aria-label="Открыть скриншот ссылки настроек cookie в&nbsp;полном размере">
+                    <img src="image/demo/reopen.png" alt="Текст и&nbsp;оформление ссылки «Настройки cookie» на сайте demo.example." width="1595" height="986" loading="lazy" decoding="async">
+                </a>
+            </div>
+        </figure>
+        <div class="dc-split__copy">
+            <h2 id="dc-reopen-title">Позвольте изменить решение</h2>
+            <div class="dc-copy">
+                <p><strong>Ссылка или кнопка «Настройки cookie» открывает сохранённые настройки.</strong> После закрытия уведомления посетитель может выбрать другие категории и&nbsp;сохранить изменения.</p>
+                <p>Разместите ссылку или кнопку в&nbsp;нужном месте сайта. Текст и&nbsp;оформление настройте в&nbsp;модуле.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="dc-proof" aria-labelledby="dc-log-title">
+        <div class="dc-proof__intro">
+            <div>
+                <h2 id="dc-log-title">Сохраняйте историю выбора посетителей</h2>
+            </div>
+            <div class="dc-copy">
+                <p><strong>Журнал ведётся по умолчанию.</strong> Для каждого решения о&nbsp;cookie сохраняются дата и&nbsp;время записи, IP-адрес, сайт, страница, действие и&nbsp;выбранные категории.</p>
+                <p>Проверяйте решения посетителей в&nbsp;журнале при разборе обращений. Журнал доступен в&nbsp;административной части Битрикс. Обязанность подтверждать основание обработки установлена <a href="https://www.consultant.ru/document/cons_doc_LAW_61801/6c94959bc017ac80140621762d2ac59f6006b08c/" target="_blank" rel="noopener">ч.&nbsp;3 ст.&nbsp;9 152-ФЗ</a>.</p>
+            </div>
+        </div>
+        <figure>
+            <div class="dc-proof__stage">
+                <a class="dc-screenshot dc-log-viewport" data-fancybox href="image/demo/consent-log.png" target="_blank" rel="noopener" aria-label="Открыть полный скриншот журнала с&nbsp;демонстрационными данными">
+                    <img src="image/demo/consent-log.png" alt="Журнал согласий: даты, IP-адреса, действия посетителей, категории и&nbsp;страницы сайта demo.example.com. Данные демонстрационные." width="1578" height="997" loading="lazy" decoding="async">
+                </a>
+            </div>
+        </figure>
+    </section>
+
+</article>
+</body>
+</html>
+
